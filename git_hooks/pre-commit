@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# Get the list of files being committed
+files=$(git diff --cached --name-only)
+
+# Loop through each file
+for file in $files; do
+  # Check if the file name contains the word "mock"
+  if echo $file | grep -q "mock"; then
+    echo "Error: Cannot commit mock files."
+    exit 1
+  fi
+done
+
+# If we reach this point, the commit can proceed
+exit 0
+
