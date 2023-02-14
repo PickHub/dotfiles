@@ -10,6 +10,10 @@ for file in $files; do
     echo "Error: Cannot commit mock files."
     exit 1
   fi
+  if echo $file | grep -q "puts"; then
+    echo "Error: Check files for puts statements."
+    exit 1
+  fi
 done
 
 # If we reach this point, the commit can proceed
